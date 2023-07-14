@@ -36,11 +36,11 @@ public class BallBounceGame extends JFrame {
         circleColor = Color.RED;
 
         circle2X = 100;
-        circle2Y = 0;  // Modified to be at the top initially
+        circle2Y = 0;
         circle2Width = 100;
         circle2Height = 50;
         circle2XMovement = 3;
-        circle2YMovement = 0;  // Modified to have no vertical movement
+        circle2YMovement = 0;
         circle2Color = Color.RED;
 
         int delay = 10;
@@ -84,9 +84,7 @@ public class BallBounceGame extends JFrame {
     private class TimerListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Check for collision between the two shapes
             if (isColliding(circleX, circleY, circleDiameter, circle2X, circle2Y, circle2Width, circle2Height)) {
-                // Swap the movements of the shapes
                 int tempXMovement = circleXMovement;
                 int tempYMovement = circleYMovement;
                 circleXMovement = circle2XMovement;
@@ -94,17 +92,17 @@ public class BallBounceGame extends JFrame {
                 circle2XMovement = tempXMovement;
                 circle2YMovement = tempYMovement;
 
-                // Change the colors of the shapes
+
                 circleColor = Color.BLUE;
                 circle2Color = Color.GREEN;
             }
 
-            // Update the positions of the shapes
+
             circleX += circleXMovement;
             circleY += circleYMovement;
             circle2X += circle2XMovement;
 
-            // Handle boundary collisions for the first shape
+
             if (circleX <= 0 || circleX >= getWidth() - circleDiameter) {
                 circleXMovement *= -1;
                 circleColor = Color.BLUE;
@@ -114,7 +112,7 @@ public class BallBounceGame extends JFrame {
                 circleColor = Color.RED;
             }
 
-            // Handle boundary collisions for the second shape
+
             if (circle2X <= 0 || circle2X >= getWidth() - circle2Width) {
                 circle2XMovement *= -1;
                 circle2Color = Color.GRAY;
@@ -123,7 +121,7 @@ public class BallBounceGame extends JFrame {
             circlePanel.repaint();
         }
 
-        // Check if two shapes are colliding
+
         private boolean isColliding(int x1, int y1, int diameter1, int x2, int y2, int width2, int height2) {
             int centerX1 = x1 + diameter1 / 2;
             int centerY1 = y1 + diameter1 / 2;
